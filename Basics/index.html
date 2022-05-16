@@ -15,12 +15,30 @@
 
     <script type="text/babel">
         class App extends React.Component {
+            state = {
+                name: 'Arpit',
+                age: 26
+            }
+            handClick = (e) => {
+                console.log(e.target)
+                // this key word is not accessible here unless we use arrow notation for the functions.
+                // do not do this.state.name = new Name
+                this.setState({
+                    name: 'Semwal'  //this will only change name and not other attributes.
+                })
+            }
+            handleMouseOver = (e) => {
+                console.log(e.target)
+                // here this instance is accessible.
+            }
             render() {
                 return (
                     //There must only be one root element <div> in this case and use className key word instead of just class because class is aleady a key word is JS.
                     <div className="app-content">
                         <h1>Hello world!</h1>
-                        <p>{Math.random() * 10}</p>
+                        <p>My name is: {this.state.name} and I am {this.state.age}</p>
+                        <button onClick={this.handClick}>Click me</button>
+                        <button onMouseOver={this.handleMouseOver}>Hover me</button>
                     </div>
                 )
             }
